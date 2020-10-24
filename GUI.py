@@ -23,6 +23,18 @@ class ProductionPane(tk.Tk):
             for coordinate in vertex_coords:
                 trtl.goto(coordinate[0], coordinate[1])
                 trtl.dot(10)
+
+            current_x = random.randint(-240, 240)
+            current_y = random.randint(-240, 240)
+            for i in range(10000):
+                rnd_vertex = random.randint(0, num_sides-1)
+                next_x = current_x + ((vertex_coords[rnd_vertex][0] - current_x) * (1 / 2))
+                next_y = current_y + ((vertex_coords[rnd_vertex][1] - current_y) * (1 / 2))
+                trtl.goto(next_x, next_y)
+                trtl.dot(1)
+                current_x = next_x
+                current_y = next_y
+
             screen.update()
 
         # Create frame to organise widgets and graphics canvas
@@ -36,8 +48,9 @@ class ProductionPane(tk.Tk):
         canvas.grid(row=1, column=0)
 
         sides_choice = tk.IntVar(self)
-        num_sides = tk.OptionMenu(main_frame, sides_choice, 4, 5, 6, 7, 8, 9, 10)
-        num_sides.grid(row=1, column=1)
+        sides_choice.set(3)
+        num_sides_choice = tk.OptionMenu(main_frame, sides_choice, 4, 5, 6, 7, 8, 9, 10)
+        num_sides_choice.grid(row=1, column=1)
 
         load_button = tk.Button(main_frame, text="Load Fractal",
                                 command=lambda: load_shape(sides_choice.get()))
