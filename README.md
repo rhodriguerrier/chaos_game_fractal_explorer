@@ -13,4 +13,4 @@ sided shape with a restriction of [1, 2, 4] and we are
 currently on the second point. This means the next selected
 vertex could be 3, 4 or 2 again. 
 
-![Chaos Game] (https://github.com/rhodriguerrier/chaos_game_fractal_explorer/blob/main/chaos_game_gui_example.png?raw=true)
+![Chaos Game](https://github.com/rhodriguerrier/chaos_game_fractal_explorer/blob/main/chaos_game_gui_example.png?raw=true)
