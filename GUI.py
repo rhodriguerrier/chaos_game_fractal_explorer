@@ -11,7 +11,7 @@ class ProductionPane(tk.Tk):
 
         # Set up initial window
         self.geometry("900x900")
-        self.configure(bg="red")
+        self.configure(bg="deep sky blue")
         self.grid_rowconfigure(0, weight=1)
         self.grid_columnconfigure(0, weight=1)
 
@@ -23,7 +23,6 @@ class ProductionPane(tk.Tk):
 
             for i in range(len(subsets)):
                 choices.append(str(subsets[i]))
-            print(choices)
 
             restrictions_choice.set(choices[0])
             menu = available_restrictions['menu']
@@ -51,7 +50,6 @@ class ProductionPane(tk.Tk):
                 current_x = next_x
                 current_y = next_y
                 rnd_vertex = self.circular_num_set(num_sides-1, rnd_vertex, jump_options)
-
             screen.update()
 
         # Create frame to organise widgets and graphics canvas
@@ -62,21 +60,24 @@ class ProductionPane(tk.Tk):
         title_label.grid(row=0, columnspan=2)
 
         canvas = tk.Canvas(main_frame, width=500, height=500)
-        canvas.grid(row=1, column=0)
+        canvas.grid(row=1, columnspan=2)
 
+        num_sides_label = tk.Label(main_frame, text="Choose the number of sides for your fractal:")
+        num_sides_label.grid(row=2, column=0)
         sides_choice = tk.IntVar(self)
-        # sides_choice.set(3)
         num_sides_choice = tk.OptionMenu(main_frame, sides_choice, 3, 4, 5, 6, 7, 8, 9, 10)
-        num_sides_choice.grid(row=1, column=1)
+        num_sides_choice.grid(row=2, column=1, sticky="ew")
 
-        restrictions_choice = tk.StringVar()
+        restrictions_label = tk.Label(main_frame, text="Pick vertex restrictions for more shapes:")
+        restrictions_label.grid(row=3, column=0)
+        restrictions_choice = tk.StringVar(self)
         available_restrictions = tk.OptionMenu(main_frame, restrictions_choice, '')
-        available_restrictions.grid(row=2, column=1)
+        available_restrictions.grid(row=3, column=1, sticky="ew")
 
         load_button = tk.Button(main_frame, text="Load Fractal",
                                 command=lambda: load_shape(sides_choice.get(),
                                                            self.cnvt_to_proper_input(restrictions_choice.get())))
-        load_button.grid(row=3, column=1)
+        load_button.grid(row=4, columnspan=2)
 
         # Set up turtle for function draw fractal on later
         screen = turtle.TurtleScreen(canvas)
