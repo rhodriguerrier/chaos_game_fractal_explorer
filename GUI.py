@@ -11,6 +11,7 @@ class ProductionPane(tk.Tk):
 
         # Set up initial window
         self.geometry("900x900")
+        self.title("Chaos Game Fractal Explorer")
         self.configure(bg="deep sky blue")
         self.grid_rowconfigure(0, weight=1)
         self.grid_columnconfigure(0, weight=1)
